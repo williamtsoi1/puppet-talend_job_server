@@ -20,6 +20,8 @@ class talend_job_server (
   $manage_group                = $::talend_job_server::params::manage_group,
   $use_ssl                     = $::talend_job_server::params::use_ssl,
   $disabled_cipher_suites      = $::talend_job_server::params::disabled_cipher_suites,
+  $username                    = $::talend_job_server::params::username,
+  $password                    = $::talend_job_server::params::password,
 ) inherits ::talend_job_server::params {
 
   # validate parameters here
@@ -49,6 +51,8 @@ class talend_job_server (
     talend_job_server_group     => $talend_job_server_group,
     use_ssl                     => $use_ssl,
     disabled_cipher_suites      => $disabled_cipher_suites,
+    username                    => $username,
+    password                    => $password,
   } ~>
   class { '::talend_job_server::service':
     talend_job_server_home      => $talend_job_server_home,
