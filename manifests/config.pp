@@ -33,7 +33,7 @@ class talend_job_server::config (
     ensure => present,
     path   => "${talend_job_server_home}/${talend_job_server_subfolder}/start_rs.sh",
     line   => "MY_JMV_ARGS=\"${jvm_settings} \"",
-    match  => 'MY_JMV_ARGS',
+    match  => '^MY_JMV_ARGS',
   }
 
   if $username != undef and $password != undef {

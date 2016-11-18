@@ -42,12 +42,12 @@ describe 'talend_job_server' do
             it { is_expected.to contain_class('talend_job_server::config') }
             it { is_expected.to contain_class('talend_job_server::service').that_subscribes_to('Class[talend_job_server::config]') }
           end
-          context 'commandline installed' do
+          context 'job server installed' do
             it { is_expected.to contain_Mkdir__p('/opt/talend_job_server') }
             it { is_expected.to contain_file('/opt/talend_job_server') }
-            it { is_expected.to contain_Staging__deploy('talend_job_server.zip') }
+            it { is_expected.to contain_Staging__deploy('Talend-JobServer-20160704_1411-V6.2.1.zip') }
           end
-          context 'commandline service set up in supervisord' do
+          context 'job server service set up in supervisord' do
             it { is_expected.to contain_Supervisord__program('talend_job_server') }
           end
           context 'user and group created' do

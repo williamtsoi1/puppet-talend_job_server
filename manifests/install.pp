@@ -35,7 +35,7 @@ class talend_job_server::install (
   }
 
   # install talend_job_server
-  staging::deploy { 'talend_job_server.zip':
+  staging::deploy { "${talend_job_server_subfolder}.zip":
     source  => $talend_job_server_url,
     target  => $talend_job_server_home,
     user    => $talend_job_server_user,
