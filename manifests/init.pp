@@ -22,6 +22,7 @@ class talend_job_server (
   $disabled_cipher_suites      = $::talend_job_server::params::disabled_cipher_suites,
   $username                    = $::talend_job_server::params::username,
   $password                    = $::talend_job_server::params::password,
+  $jvm_settings                = $::talend_job_server::params::jvm_settings,
 ) inherits ::talend_job_server::params {
 
   # validate parameters here
@@ -53,6 +54,7 @@ class talend_job_server (
     disabled_cipher_suites      => $disabled_cipher_suites,
     username                    => $username,
     password                    => $password,
+    jvm_settings                => $jvm_settings,
   } ~>
   class { '::talend_job_server::service':
     talend_job_server_home      => $talend_job_server_home,
