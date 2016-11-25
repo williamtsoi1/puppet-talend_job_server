@@ -15,5 +15,8 @@ class talend_job_server::service (
   } ~>
   exec { 'chkconfig':
     command => '/sbin/chkconfig --add jobserver',
+  } ~>
+  exec { 'restart':
+    command => '/etc/init.d/jobserver restart',
   }
 }
