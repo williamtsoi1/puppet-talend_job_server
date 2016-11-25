@@ -1,0 +1,54 @@
+# chkconfig: 345 91 10
+# description: Starts and stops the jobserver daemon.
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Get config.
+. /etc/sysconfig/network
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+user=<%= @talend_job_server_user %>
+jobserver=<%= @talend_job_server_home %>/<%= @talend_job_server_subfolder %>
+startup=start_rs.sh
+shutdown=stop_rs.sh
+
+
+start(){
+ echo -n $"Starting jobserver service: "
+ su - $user -c "cd $jobserver && sh $startup &"
+ RETVAL=$?
+ echo
+}
+
+stop(){
+ echo -n $ "Stopping jobserver service: "
+ su - $user -c  "cd $jobserver && sh $shutdown"
+ RETVAL=$?
+ echo
+}
+
+restart() {
+ stop
+ start
+}
+
+# See how we were called.
+case "$1" in
+start)
+ start
+ ;;
+stop)
+ stop
+ ;;
+restart)
+ restart
+ ;;
+*)
+ echo $"Usage: $0 {start|stop|restart}"
+ exit 1
+esac
+
+exit 0
