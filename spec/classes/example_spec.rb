@@ -47,8 +47,9 @@ describe 'talend_job_server' do
             it { is_expected.to contain_file('/opt/talend_job_server') }
             it { is_expected.to contain_Staging__deploy('Talend-JobServer-20160704_1411-V6.2.1.zip') }
           end
-          context 'job server service set up in supervisord' do
-            it { is_expected.to contain_Supervisord__program('talend_job_server') }
+          context 'job server service set up in init.d' do
+            it { is_expected.to contain_File('/etc/init.d/jobserver') }
+            it { is_expected.to contain_Exec('chkconfig') }
           end
           context 'user and group created' do
             it { is_expected.to contain_user('talenduser') }
