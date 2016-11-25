@@ -1,6 +1,6 @@
 {
   "name": "williamtsoi-talend_job_server",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": "William Tsoi",
   "summary": "This module is used to install Talend Job Server, as well as install a service using supervisord.",
   "license": "MIT",
